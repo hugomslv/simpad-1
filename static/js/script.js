@@ -2,6 +2,38 @@
 const RANDOM_IMAGE_URL = "https://app-simba.azurewebsites.net/simba/external/api/v1/pad-dashboard/image";
 //const INFORMATION_URL = "https://app-simba.azurewebsites.net/simba/external/api/v1/informations"
 document.addEventListener("load", onInit());
+let inactivityTimer;
+const overlay = document.getElementById('startOverlay');
+
+function showOverlay() {
+    overlay.classList.remove('fade-out');
+    overlay.style.display = 'flex';
+}
+
+function hideOverlay() {
+    overlay.classList.add('fade-out');
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 1500);
+}
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    hideOverlay();
+    inactivityTimer = setTimeout(showOverlay, 30000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    overlay.style.display = 'none';
+    resetInactivityTimer();
+
+    document.addEventListener('click', resetInactivityTimer);
+    
+    overlay.addEventListener('click', () => {
+        hideOverlay();
+        resetInactivityTimer();
+    });
+});
 
 function onInit(){
     loadRandomImage();
