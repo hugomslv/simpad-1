@@ -144,9 +144,15 @@ function arrayToDate(dateArray) {
 
 function launchAnimation() {
   const badgeCard = document.querySelector('.inclined-card');
+  const langSelector = document.querySelector('.language-selector');
+  const helpLion = document.querySelector('.help-lion');
+
     return new Promise((resolve) => {
         badgeCard.style.zIndex = '99999';
-        
+
+        if (langSelector) langSelector.style.display = 'none';
+        if (helpLion) helpLion.style.display = 'none';
+
         badgeCard.style.animation = 'none';
         void badgeCard.offsetWidth;
         badgeCard.style.animation = 'badged 1.5s forwards';

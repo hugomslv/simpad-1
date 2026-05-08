@@ -58,7 +58,6 @@ function updateLanguageButtons() {
 
 function setLanguage(lang) {
     loadLanguage(lang);
-    console.log(lang);
 }
 
 document.addEventListener('DOMContentLoaded', () => loadLanguage(DEFAULT_LANG));
