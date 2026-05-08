@@ -1,0 +1,49 @@
+{
+  "page_title": "Waiting...",
+  "welcome": "Welcome to SimPad",
+  "pay_with_pig": "Pay with the pig",
+  "waiting_badge": "Waiting for the badge",
+  "no_badge": "I don't have my badge.",
+  "no_badge_text": "If you don't have your badge, no problem, you can also buy snacks with your smartphone.",
+  "no_account": "I don't have an account.",
+  "no_account_text": "To use SimPad (the tablet of the Simba application), you must already be logged into the application from a computer with this link",
+  "no_account_text_qr": "or with your smartphone using this QR code:",
+  "company": "Swiss Post Ltd",
+
+  "help_bubble": "First time?",
+  "tutorial_prev": "Previous",
+  "tutorial_next": "Next",
+  "tutorial_finish": "Let's go!",
+
+  "tutorial_step1_title": "How would you like to pay?",
+  "tutorial_step1_text": "Choose your payment method before getting started.",
+
+  "tutorial_choice_cash": "Cash",
+  "tutorial_choice_cash_desc": "Pay with cash",
+  "tutorial_choice_simba": "Simba account",
+  "tutorial_choice_simba_desc": "With your ID-Post badge",
+
+  "tutorial_cash_title": "Cash payment",
+  "tutorial_cash_text": "Click this button to continue in cash payment mode.",
+  "tutorial_simba_title": "Sign in to Simba",
+  "tutorial_simba_text": "Scan this QR code with your phone to open Simba.",
+
+  "tutorial_cash_select_title": "Choose your item",
+  "tutorial_cash_select_text": "Select the item you want to purchase.",
+  "tutorial_simba_select_title": "Scan your badge",
+  "tutorial_simba_select_text": "Hold your badge near the reader and pick your name from the list.",
+
+  "tutorial_cash_pay_title": "Don't forget!",
+  "tutorial_cash_pay_text": "Don't forget to put the money in the pig (the piggy bank) after your purchase.",
+  "tutorial_simba_pay_title": "Choose and pay",
+  "tutorial_simba_pay_text": "Choose your item and proceed to payment.",
+
+  "tutorial_step2_title": "Present your badge",
+  "tutorial_step2_text": "Hold your ID-Post badge near the reader to identify yourself. No badge? Use your smartphone via the QR code.",
+
+  "tutorial_step3_title": "Choose your snacks",
+  "tutorial_step3_text": "Browse the available products and pick what you like. Your purchases are automatically recorded.",
+
+  "tutorial_step4_title": "Enjoy!",
+  "tutorial_step4_text": "Payment is automatically charged at the end of the month. You can check your history on the Simba app."
+}

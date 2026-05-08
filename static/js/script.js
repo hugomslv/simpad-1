@@ -113,6 +113,8 @@ function arrayToDate(dateArray) {
 function launchAnimation() {
   const badgeCard = document.querySelector('.inclined-card');
     return new Promise((resolve) => {
+        badgeCard.style.zIndex = '99999';
+        
         badgeCard.style.animation = 'none';
         void badgeCard.offsetWidth;
         badgeCard.style.animation = 'badged 1.5s forwards';

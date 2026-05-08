@@ -1,0 +1,49 @@
+{
+  "page_title": "En attente...",
+  "welcome": "Bienvenue sur SimPad",
+  "pay_with_pig": "Payer avec le cochon",
+  "waiting_badge": "En attente du badge",
+  "no_badge": "Je n'ai pas mon badge.",
+  "no_badge_text": "Si vous n'avez pas votre badge, pas de problème, vous pouvez également acheter les snacks avec votre smartphone.",
+  "no_account": "Je n'ai pas de compte.",
+  "no_account_text": "Pour pouvoir utiliser SimPad (la tablette de l'application Simba), vous devez déjà vous être connecté à l'application depuis un ordinateur avec ce lien",
+  "no_account_text_qr": "ou bien avec votre smartphone avec ce QR code :",
+  "company": "La Poste Suisse SA",
+
+  "help_bubble": "Première fois ?",
+  "tutorial_prev": "Précédent",
+  "tutorial_next": "Suivant",
+  "tutorial_finish": "C'est parti !",
+
+  "tutorial_step1_title": "Comment souhaitez-vous payer ?",
+  "tutorial_step1_text": "Choisissez votre mode de paiement avant de commencer.",
+
+  "tutorial_choice_cash": "Cash",
+  "tutorial_choice_cash_desc": "Payer en espèces",
+  "tutorial_choice_simba": "Compte Simba",
+  "tutorial_choice_simba_desc": "Avec votre badge ID-Post",
+
+  "tutorial_cash_title": "Paiement en cash",
+  "tutorial_cash_text": "Cliquez sur ce bouton pour continuer en mode paiement comptant.",
+  "tutorial_simba_title": "Connectez-vous à Simba",
+  "tutorial_simba_text": "Scannez ce QR code avec votre téléphone pour ouvrir Simba.",
+
+  "tutorial_cash_select_title": "Choisissez votre article",
+  "tutorial_cash_select_text": "Sélectionnez l'article que vous souhaitez acheter.",
+  "tutorial_simba_select_title": "Scannez votre badge",
+  "tutorial_simba_select_text": "Approchez votre badge du lecteur et choisissez votre nom dans la liste.",
+
+  "tutorial_cash_pay_title": "N'oubliez pas !",
+  "tutorial_cash_pay_text": "N'oubliez pas de mettre l'argent dans le cochon (la tirelire) après votre achat.",
+  "tutorial_simba_pay_title": "Choisissez et payez",
+  "tutorial_simba_pay_text": "Choisissez votre article et procédez au paiement.",
+
+  "tutorial_step2_title": "Présentez votre badge",
+  "tutorial_step2_text": "Approchez votre badge ID-Post du lecteur pour vous identifier. Pas de badge ? Utilisez votre smartphone via le QR code.",
+
+  "tutorial_step3_title": "Choisissez vos snacks",
+  "tutorial_step3_text": "Parcourez les produits disponibles et sélectionnez ce qui vous fait envie. Vos achats sont automatiquement enregistrés.",
+
+  "tutorial_step4_title": "Bon appétit !",
+  "tutorial_step4_text": "Le paiement est prélevé automatiquement à la fin du mois. Vous pouvez consulter votre historique sur l'application Simba."
+}
