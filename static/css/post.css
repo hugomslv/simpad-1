@@ -31,13 +31,25 @@
       url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Md.woff") format("woff");
     font-display: swap;
   }
-*{
-    font-family: 'Frutiger Neue For Post';
+* {
+    font-family: 'Frutiger Neue For Post', sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
-body{
+
+input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+body {
     height: 100vh;
     margin: 0;
-    font-family: 'Frutiger Neue For Post';
+    font-family: 'Frutiger Neue For Post', sans-serif;
     font-size: 12px;
 }
 
