@@ -3,8 +3,8 @@
     position: fixed;
     bottom: 24px;
     left: 24px;
-    width: 72px;
-    height: 72px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
     border: none;
     background: #ffcc00;
@@ -28,20 +28,20 @@
 }
 
 .help-lion-emoji {
-height: 64px;
+height: 76px;
 }
 
 .help-lion-bubble {
     position: absolute;
     bottom: 100%;
     left: 0;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     background: white;
     color: #333;
-    padding: 8px 14px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 500;
+    padding: 14px 22px;
+    border-radius: 16px;
+    font-size: 22px;
+    font-weight: 600;
     white-space: nowrap;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
     animation: bubble-bounce 2s ease-in-out infinite;
@@ -51,8 +51,8 @@ height: 64px;
     content: "";
     position: absolute;
     top: 100%;
-    left: 24px;
-    border: 6px solid transparent;
+    left: 28px;
+    border: 8px solid transparent;
     border-top-color: white;
 }
 

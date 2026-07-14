@@ -1,91 +1,121 @@
-from flask import Flask, render_template, redirect, url_for, jsonify, request
+from flask import Flask, render_template, jsonify
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import nfc
 import jwt
 import base64
 import threading
+import time
+
 SECRET_KEY = '069332689e9ea429cbe681fbe05b3c403490a38208a0d15cbe967069d18490b7'
 ALGORITHM = 'HS256'
 
-app= Flask(__name__)
+# Durée d'un cycle d'écoute avant de re-vérifier le lecteur (en secondes)
+CYCLE_DURATION = 10
 
+app = Flask(__name__)
 nfc_lock = threading.Lock()
 
+
+def open_reader():
+    """Ouvre le lecteur NFC. Retourne l'instance ou None."""
+    try:
+        clf = nfc.ContactlessFrontend('usb')
+        if clf:
+            return clf
+        print("Lecteur NFC non trouvé.")
+        return None
+    except Exception as e:
+        print(f"Erreur ouverture lecteur: {e}")
+        return None
+
+
 def read_nfc():
+    """
+    Attend un badge INDÉFINIMENT, en redémarrant le lecteur si besoin.
+    Retourne l'UID quand un badge est détecté.
+    """
     with nfc_lock:
-        try:
-            clf = nfc.ContactlessFrontend('usb')
-        except Exception as e:
-            print(f"Failed to initialize NFC reader: {e}")
-            return None
-
-        if not clf:
-            print("NFC reader not found. Please connect the device.")
-            return None
-
-        print("Waiting for NFC badge...")
+        clf = None
         card_uid = None
-
+        
         def on_connect(tag):
             nonlocal card_uid
-            print("Badge detected!")
             card_uid = tag.identifier.hex().upper()
-            print(f"Card UID: {card_uid}")
-            return False  # Disconnect immediately after reading the tag
-
-        try:
-            while True:
-                clf.connect(rdwr={'on-connect': on_connect})
-                if card_uid:
-                    print(f"Returning UID: {card_uid}")
-                    return card_uid
-        except Exception as e:
-            print(f"Error while reading NFC badge: {e}")
-        finally:
+            print(f"Badge détecté, UID: {card_uid}")
+            return False
+        
+        # Boucle infinie : on ne sort que si on a un badge
+        while card_uid is None:
+            # Ouvrir le lecteur si on n'en a pas
+            if clf is None:
+                clf = open_reader()
+                if clf is None:
+                    print("Lecteur indisponible, nouvelle tentative dans 2 sec...")
+                    time.sleep(2)
+                    continue
+            
+            # Faire un cycle d'écoute de CYCLE_DURATION secondes
+            deadline = time.time() + CYCLE_DURATION
+            
             try:
-                clf.close()
-            except Exception as close_error:
-                print(f"Error while closing NFC reader: {close_error}")
+                clf.connect(
+                    rdwr={'on-connect': on_connect},
+                    terminate=lambda: time.time() > deadline
+                )
+                # Si on sort sans badge, on boucle juste (le while va recommencer)
+                
+            except Exception as e:
+                print(f"Lecteur a planté: {e}. Redémarrage...")
+                # On force la réouverture au prochain tour
+                try:
+                    clf.close()
+                except Exception:
+                    pass
+                clf = None
+                time.sleep(1)
+        
+        # On a un badge, on ferme proprement et on retourne
+        try:
+            clf.close()
+        except Exception as close_error:
+            print(f"Erreur fermeture: {close_error}")
+        
+        return card_uid
+
 
 def get_signing_key():
-    # Decode the Base64-encoded secret key
-    key_bytes = base64.b64decode(SECRET_KEY)
-    return key_bytes
-        
+    return base64.b64decode(SECRET_KEY)
+
+
+def generate_token(card_uid):
+    exp = datetime.now(ZoneInfo("Europe/Zurich")) + timedelta(minutes=5)
+    return jwt.encode(
+        {"card_uid": card_uid, "exp": exp},
+        get_signing_key(),
+        algorithm=ALGORITHM
+    )
+
+
 @app.route('/')
 def index():
     return render_template('Simba.html')
 
+
 @app.route('/waiting', methods=['GET'])
 def wait_for_nfc():
-    cardUID = read_nfc()
-    if cardUID:
-        # Create the JWT token with the NFC data
-        utc_time = datetime.utcnow()
-        local_time = utc_time.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo("Europe/Zurich")) + timedelta(seconds=300)
-        print("Local time:", local_time)
-        token = jwt.encode({"card_uid": cardUID, "exp": local_time}, get_signing_key(), algorithm=ALGORITHM)
-        print(cardUID)
-        print(token)
-        
-        # Return the redirection URL as a JSON response
-        redirect_url = f"https://app-simba.azurewebsites.net/simba/external/api/v1/pad-dashboard/login?token={token}"
-        #redirect_url = f"http://localhost:8080/simba/external/api/v1/pad-dashboard/login?token={token}"
+    card_uid = read_nfc()
+    token = generate_token(card_uid)
+    redirect_url = f"https://app-simba.azurewebsites.net/simba/external/api/v1/pad-dashboard/login?token={token}"
+    return jsonify({"redirect_url": redirect_url})
 
-        return jsonify({"redirect_url": redirect_url})
-    
-    return jsonify({"error": "No NFC data received"}), 500
 
 @app.route('/get-pig-login', methods=['GET'])
-def get_PigLogin():
-    utc_time = datetime.utcnow()
-    local_time = utc_time.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo("Europe/Zurich")) + timedelta(minutes=5)
-    token = jwt.encode({"card_uid": "pigUid", "exp": local_time}, get_signing_key(), algorithm=ALGORITHM)
+def get_pig_login():
+    token = generate_token("pigUid")
     redirect_url = f"https://app-simba.azurewebsites.net/simba/external/api/v1/pad-dashboard/login?token={token}&user=pig"
     return jsonify({"redirect_url": redirect_url})
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-    
-

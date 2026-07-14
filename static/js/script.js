@@ -64,6 +64,14 @@ let noBadgeToggled = false;
 let noAccountToggled = false;
 let piggyBankToggled = false;
 
+function closeAccordionsAndOpenTutorial() {
+    noBadgeToggled = false;
+    noAccountToggled = false;
+    document.querySelector('.no-badge-content').classList.add('d-none');
+    document.querySelector('.no-account-content').classList.add('d-none');
+    openTutorial();
+}
+
 fetchData();
 
 async function fetchData() {

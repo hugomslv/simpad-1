@@ -6,8 +6,9 @@
   "no_badge": "Non ho il mio badge.",
   "no_badge_text": "Se non avete il vostro badge, nessun problema, potete anche acquistare gli snack con il vostro smartphone.",
   "no_account": "Non ho un account.",
-  "no_account_text": "Per poter utilizzare SimPad (il tablet dell'applicazione Simba), dovete prima esservi connessi all'applicazione da un computer con questo link",
+  "no_account_text": "Per poter utilizzare SimPad (il tablet dell'applicazione Simba), dovete prima essere connessi all'applicazione da un computer con questo link",
   "no_account_text_qr": "oppure con il vostro smartphone tramite questo QR code:",
+  "see_tutorial": "Serve aiuto? Guarda il tutorial",
   "company": "La Posta Svizzera SA",
 
   "help_bubble": "Prima volta?",
@@ -24,7 +25,7 @@
   "tutorial_choice_simba_desc": "Con il vostro badge ID-Post",
 
   "tutorial_cash_title": "Pagamento in contanti",
-  "tutorial_cash_text": "Cliccate su questo pulsante per continuare in modalità pagamento in contanti.",
+  "tutorial_cash_text": "Cliccate su questo pulsante per continuare con la   modalità pagamento in contanti.",
   "tutorial_simba_title": "Accedi a Simba",
   "tutorial_simba_text": "Scansionate questo QR code con il vostro telefono per aprire Simba.",
 

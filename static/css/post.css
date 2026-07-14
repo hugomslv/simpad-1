@@ -555,3 +555,69 @@ p{
   background: #ffcc00;
   border-color: #ffcc00;
 }
+.toggle-button span {
+    font-size: 16px;
+}
+.toggle-content{
+    background-color: #f4f3f1;
+    padding: 16px;
+    font-size: 16px;
+    border-bottom: 2px solid rgb(102, 102, 102);
+}
+
+.pig-button{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pig-icon{
+    height: 28px;
+    width: 28px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+.image {
+    position: relative;
+}
+
+.image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.lang-btn {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-btn .flag {
+  width: 22px;
+  height: auto;
+  border-radius: 2px;
+  display: block;
+}
+
+.tuto-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 16px;
+    font-family: "Frutiger Neue For Post Medium", sans-serif;
+    color: #333;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.tuto-link:hover {
+    color: #000;
+}
